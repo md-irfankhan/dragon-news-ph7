@@ -4,17 +4,19 @@ import { FaGithub } from 'react-icons/fa';
 const Home = () => {
     const [categories,setCategories]=useState([])
     useEffect(()=>{
-        fetch('/api/categories.json')
+        fetch('https://openapi.programming-hero.com/api/news/categories')
         .then(res=>res.json())
-        .then(data=>setCategories(data))
+        .then(data=>setCategories(data.data.news_category))
     },[])
+    console.log(categories);
+    
     return (
-       <main className="grid grid-cols-12 max-w-[1250px] mx-auto">
+       <main className="grid lg:grid-cols-12  max-w-[1250px] mx-auto">
         <aside className="col-span-3">
             <h1 className="font-bold">All Category</h1>
-           <div className="flex flex-col gap-y-2">
+           <div className="flex flex-wrap gap-2 lg:flex-col gap-y-2">
               {
-                categories.map(cate=><button key={cate.id}>{cate.name}</button>)
+                categories.map(cate=><button className="py-1.5 px-3" key={cate.category_id}>{cate.category_name}</button>)
               }
            </div>
         </aside>
