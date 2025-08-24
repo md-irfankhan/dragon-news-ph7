@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import RightNav from "../RightNav/RightNav";
 import News from "../News/News";
-import { Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import Nav from "../Nav/Nav";
 import Header from "../Header/Header";
-
+import './Home.css'
 const Home = () => {
     const [categories, setCategories] = useState([])
     useEffect(() => {
@@ -25,7 +25,7 @@ const Home = () => {
                     <h1 className="font-bold">All Category</h1>
                     <div className="flex flex-wrap gap-2 lg:flex-col gap-y-2">
                         {
-                            categories.map(cate => <button className="py-1.5 px-3" key={cate.category_id}>{cate.category_name}</button>)
+                            categories.map(cate =><NavLink to={`/category/${cate.category_id}`}><button className="py-1.5 px-3" key={cate.category_id}>{cate.category_name}</button></NavLink> )
                         }
                     </div>
                 </aside>
